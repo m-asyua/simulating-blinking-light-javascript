@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+
+
+
+
+
+<span id="mark">■</span>
+<br />
+
+・色１<input type="text" id="select_color1" value="#ff0000">
+
+<select name="select_color1" >
+    <option value="#000000" >黒</option>
+    <option value="#ff0000" selected >赤</option>
+    <option value="#00ff00" >緑</option>
+    <option value="#0000ff" >青</option>
+</select>
+<br />
+
+
+
+
+
+・色の点灯時間１（オン）
+<input type="text" id="on_time1" value="1000">ミリ秒
+
+<br />
+
+
+
+
+・消灯時間１（オフ）
+<input type="text" id="off_time1" value="1000">ミリ秒
+<br />
+
+<hr>
+
+
+・色２<input type="text" id="select_color2" value="#00000">
+
+<select name="select_color2" >
+    <option value="#000000" selected>黒</option>
+    <option value="#ff0000" >赤</option>
+    <option value="#00ff00" >緑</option>
+    <option value="#0000ff" >青</option>
+</select>
+<br />
+
+・色の点灯時間２（オン）
+<input type="text" id="on_time2" value="0">ミリ秒
+<br />
+
+・消灯時間２（オフ）
+<input type="text" id="off_time2" value="0">ミリ秒
+<br />
+
+
+・色３<input type="text" id="select_color3" value="#00000">
+
+<select name="select_color3" >
+    <option value="#000000" selected>黒</option>
+    <option value="#ff0000" >赤</option>
+    <option value="#00ff00" >緑</option>
+    <option value="#0000ff" >青</option>
+</select>
+<br />
+
+・色の点灯時間３（オン）
+<input type="text" id="on_time3" value="0">ミリ秒
+<br />
+
+・消灯時間３（オフ）
+<input type="text" id="off_time3" value="0">ミリ秒
+<br />
+
+
+
+<script>
+
+	
+
+	let select1 = document.querySelector('[name="select_color1"]');
+	select1.onchange = event => { 
+		document.getElementById("select_color1").value = select1.options[select1.selectedIndex].value;
+	}
+
+
+	let select2 = document.querySelector('[name="select_color2"]');
+	select2.onchange = event => { 
+		document.getElementById("select_color2").value = select2.options[select2.selectedIndex].value;
+	}
+
+	let select3 = document.querySelector('[name="select_color3"]');
+	select3.onchange = event => { 
+		document.getElementById("select_color3").value = select3.options[select3.selectedIndex].value;
+	}
+
+	document.getElementById("mark").style="color:#333333";
+
+	go_on1();
+
+
+	function go_on1(){
+		document.getElementById("mark").style="color:"+document.getElementById("select_color1").value;
+
+		setTimeout( 
+			go_off1,
+			Number(document.getElementById("on_time1").value)
+		);
+	}
+
+	function go_off1(){
+
+		if(Number(document.getElementById("off_time1").value)!=0){
+			document.getElementById("mark").style="color:#333333";
+		}
+		setTimeout(
+			go_on2,
+			Number(document.getElementById("off_time1").value)
+		);
+	}
+
+
+	function go_on2(){
+		document.getElementById("mark").style="color:"+document.getElementById("select_color2").value;
+
+		setTimeout( 
+			go_off2,
+			Number(document.getElementById("on_time2").value)
+		);
+	}
+
+	function go_off2(){
+
+		if(Number(document.getElementById("off_time2").value)!=0){
+			document.getElementById("mark").style="color:#333333";
+		}
+		setTimeout(
+			go_on3,
+			Number(document.getElementById("off_time2").value)
+		);
+	}
+
+
+	function go_on3(){
+		document.getElementById("mark").style="color:"+document.getElementById("select_color3").value;
+
+		setTimeout( 
+			go_off3,
+			Number(document.getElementById("on_time3").value)
+		);
+	}
+
+	function go_off3(){
+
+		if(Number(document.getElementById("off_time3").value)!=0){
+			document.getElementById("mark").style="color:#333333";
+		}
+
+		setTimeout(
+			go_on1,
+			Number(document.getElementById("off_time3").value)
+		);
+	}
+
+
+</script>
+
+
+
+
+</body>
+
+
+</html>
+
